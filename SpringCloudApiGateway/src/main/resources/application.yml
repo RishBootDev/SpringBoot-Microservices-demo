@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: SpringCloudApiGateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: ORDERSERVICE
+          uri: lb://ORDERSERVICE
+          predicates:
+            - Path=/orders/**
+
+        - id: INVENTORYSERVICE
+          uri: lb://INVENTORYSERVICE
+          predicates:
+            - Path=/inventory/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+server:
+  port: 9000
