@@ -7,6 +7,9 @@ import com.rishbootdev.orderservice.entity.Order;
 import com.rishbootdev.orderservice.entity.OrderItem;
 import com.rishbootdev.orderservice.entity.OrderStatus;
 import com.rishbootdev.orderservice.repository.OrdersRepository;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -35,9 +38,9 @@ public class OrderService {
         return modelMapper.map(order, OrderRequestDto.class);
     }
 
-    //    @Retry(name = "inventoryRetry", fallbackMethod = "createOrderFallback")
-   // @CircuitBreaker(name = "inventoryCircuitBreaker", fallbackMethod = "createOrderFallback")
-//    @RateLimiter(name = "inventoryRateLimiter", fallbackMethod = "createOrderFallback")
+   // @Retry(name = "inventoryRetry", fallbackMethod = "createOrderFallback")
+    @CircuitBreaker(name = "inventoryCircuitBreaker", fallbackMethod = "createOrderFallback")
+    @RateLimiter(name = "inventoryRateLimiter", fallbackMethod = "createOrderFallback")
     public OrderRequestDto createOrder(OrderRequestDto orderRequestDto) {
         log.info("Calling the createOrder method");
         Double totalPrice = inventoryOpenFeignClient.reduceStocks(orderRequestDto);
@@ -50,7 +53,6 @@ public class OrderService {
         orders.setOrderStatus(OrderStatus.CONFIRMED);
 
         Order savedOrder = orderRepository.save(orders);
-
         return modelMapper.map(savedOrder, OrderRequestDto.class);
     }
 
