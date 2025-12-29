@@ -5,20 +5,40 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: ORDERSERVICE
-          uri: lb://ORDERSERVICE
+        - id: OrderService
+          uri: lb://OrderService
           predicates:
             - Path=/orders/**
 
-        - id: INVENTORYSERVICE
-          uri: lb://INVENTORYSERVICE
+        - id: InventoryService
+          uri: lb://InventoryService
           predicates:
             - Path=/inventory/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: ORDER-SERVICE
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/orders/**
+
+            - id: INVENTORY-SERVICE
+              uri: lb://INVENTORY-SERVICE
+              predicates:
+                - Path=/inventory/**
+
+
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
 
 server:
   port: 9000

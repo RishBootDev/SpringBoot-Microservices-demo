@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-@FeignClient(name = "InventoryService", path = "/inventory")
+@FeignClient(name = "INVENTORY-SERVICE", path = "/inventory")
 public interface InventoryOpenFeignClient {
 
     @PutMapping("/products/reduce-stocks")

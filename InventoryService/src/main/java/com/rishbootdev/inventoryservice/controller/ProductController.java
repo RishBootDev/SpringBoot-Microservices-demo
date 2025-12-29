@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/products")
+@RequestMapping("/inventory/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -30,7 +30,7 @@ public class ProductController {
     @GetMapping("/fetchOrders")
     public String fetchFromOrdersService(HttpServletRequest httpServletRequest) {
 
-        log.info(httpServletRequest.getHeader("x-custom-header"));
+       // log.info(httpServletRequest.getHeader("x-custom-header"));
 
 //        ServiceInstance orderService = discoveryClient.getInstances("order-service").getFirst();
 
