@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServiceDiscovery" />
+        <module name="ConfigurationServer" />
         <module name="SpringCloudApiGateway" />
       </profile>
       <profile name="Annotation profile for OrderService" enabled="true">
@@ -15,6 +16,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="OrderService" />
@@ -24,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ConfigurationServer" options="-parameters" />
       <module name="EurekaServiceDiscovery" options="-parameters" />
       <module name="InventoryService" options="-parameters" />
       <module name="OrderService" options="-parameters" />
