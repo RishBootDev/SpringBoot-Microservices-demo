@@ -1,7 +1,5 @@
 spring:
+  application:
+    name: SpringCloudApiGateway
   config:
     import: configserver:http://localhost:8081
-
-
-server:
-  port: 9000
