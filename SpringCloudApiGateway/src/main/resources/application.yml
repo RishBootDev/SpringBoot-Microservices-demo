@@ -1,46 +1,7 @@
 spring:
-  application:
-    name: SpringCloudApiGateway
+  config:
+    import: configserver:http://localhost:8081
 
-  cloud:
-    gateway:
-      routes:
-        - id: ORDER-SERVICE
-          uri: lb://ORDER-SERVICE
-          predicates:
-            - Path=/orders/**
-
-        - id: INVENTORY-SERVICE
-          uri: lb://INVENTORY-SERVICE
-          predicates:
-            - Path=/inventory/**
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
-          routes:
-            - id: ORDER-SERVICE
-              uri: lb://ORDER-SERVICE
-              predicates:
-                - Path=/orders/**
-              filters:
-#                - RedirectTo=302, http:rishbootdev.com   // the same path will be redirected to this path
-
-            - id: INVENTORY-SERVICE
-              uri: lb://INVENTORY-SERVICE
-              predicates:
-                - Path=/inventory/**
-
-
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetch-registry: true
-    register-with-eureka: true
 
 server:
   port: 9000
