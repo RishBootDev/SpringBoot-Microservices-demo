@@ -5,13 +5,13 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: OrderService
-          uri: lb://OrderService
+        - id: ORDER-SERVICE
+          uri: lb://ORDER-SERVICE
           predicates:
             - Path=/orders/**
 
-        - id: InventoryService
-          uri: lb://InventoryService
+        - id: INVENTORY-SERVICE
+          uri: lb://INVENTORY-SERVICE
           predicates:
             - Path=/inventory/**
       server:
@@ -25,6 +25,8 @@ spring:
               uri: lb://ORDER-SERVICE
               predicates:
                 - Path=/orders/**
+              filters:
+#                - RedirectTo=302, http:rishbootdev.com   // the same path will be redirected to this path
 
             - id: INVENTORY-SERVICE
               uri: lb://INVENTORY-SERVICE
