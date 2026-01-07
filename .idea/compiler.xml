@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SpringCloudApiGateway" />
         <module name="EurekaServiceDiscovery" />
         <module name="ConfigurationServer" />
-        <module name="SpringCloudApiGateway" />
+        <module name="AdminServer" />
       </profile>
       <profile name="Annotation profile for OrderService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -25,6 +26,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="AdminServer" options="-parameters" />
       <module name="ConfigurationServer" options="-parameters" />
       <module name="EurekaServiceDiscovery" options="-parameters" />
       <module name="InventoryService" options="-parameters" />

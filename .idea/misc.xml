@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/EurekaServiceDiscovery/pom.xml" />
         <option value="$PROJECT_DIR$/SpringCloudApiGateway/pom.xml" />
         <option value="$PROJECT_DIR$/ConfigurationServer/pom.xml" />
+        <option value="$PROJECT_DIR$/AdminServer/pom.xml" />
       </list>
     </option>
   </component>
