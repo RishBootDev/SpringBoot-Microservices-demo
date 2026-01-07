@@ -3,3 +3,17 @@ spring:
     name: SpringCloudApiGateway
   config:
     import: configserver:http://localhost:8081
+
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+
+
+management:
+  endpoint:
+
+
+    health:
+      show:
+        details: always
